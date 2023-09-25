@@ -37,15 +37,12 @@ input {
     display: block;
 }
 
-.dialogue button {
-    font-family: retro;
-    font-size: 1em;
-    background: transparent;
-    color: white;
-    margin-left: 10px;
-    height: 100%;
-    width: 50px;
-    border: 0;
+.dialogue .option {
+    margin-top: 10px;
+}
+
+.dialogue .option span {
+    display: inline;
 }
 
 span {

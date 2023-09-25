@@ -1,6 +1,8 @@
 const dialogue = document.querySelector(".dialogue")
 const lines = document.querySelector(".lines")
 const commandInput = document.createElement("input")
+const arrow = document.createElement("span")
+arrow.textContent = "<"
 
 
 const fileInformation = {
@@ -42,13 +44,16 @@ const dialogueLines = {
     },
     1: {
         line: "Are you there?",
+        delay: 400,
         options: {
-            one: {
-                text: ">Yes"
+            0: {
+                text: "Yes",
+                response: "Welcome."
             },
-            two: {
-                text: "No"
-            }
+            1: {
+                text: "No",
+                response: "Haha. Good joke."
+            },
         }
     },
     2: {
@@ -65,11 +70,17 @@ const dialogueLines = {
 
 }
 
-
-
 let parentPath = "C:\\Users"
 let Path = "C:\\Users\\???"
 let currentDir = "???"
+
+let textIndex = 0
+let optionIndex = 0
+let dialogueLineIndex = 0
+let currentDialogue
+let choosingOption = false
+let currentLine
+
 
 
 commandInput.autofocus = true
@@ -77,35 +88,42 @@ commandInput.onblur = () => {
     commandInput.focus() 
 }
 
-let textIndex = 0
-let dialogueLineIndex = 0
-let currentDialogue
-
-
-function typeWriter() {
-    const currentLine = dialogueLines[dialogueLineIndex]
+const typeWriter = (optionIndex) => {
+    let text = dialogueLines[dialogueLineIndex].line
+    if (optionIndex != null) {
+        text = currentLine.options[optionIndex].response
+    } else {
+        currentLine = dialogueLines[dialogueLineIndex]
+    }
     const speed = currentLine.speed || 50
     if (!currentDialogue) {
         currentDialogue = document.createElement("span")
         dialogue.appendChild(currentDialogue)
     }
     setTimeout(function() {
-        currentDialogue.textContent += currentLine.line.charAt(textIndex)
+        currentDialogue.textContent += text.charAt(textIndex)
         textIndex++
-        if (textIndex>=currentLine.line.length){
+        if (textIndex>=text.length){
             textIndex = 0
-            if (currentLine.options) {
+            if (currentLine.options && optionIndex == null) {
                 setTimeout(() => {
                     Object.keys(currentLine.options).forEach(optionName => {
                         const option = currentLine.options[optionName]
-                        const button = document.createElement("button")
-                        button.textContent = option.text
-                        currentDialogue.appendChild(button)
+                        const optionDiv = document.createElement("div")
+                        const optionText = document.createElement("span")
+                        optionText.textContent = ` ${option.text}`
+                        optionDiv.className = "option"
+                        optionDiv.setAttribute("name", "option")
+                        optionDiv.appendChild(optionText)
+                        currentDialogue.appendChild(optionDiv)
                     })
+                    optionIndex = 0
+                    choosingOption = true
+                    updateOption(0)
                 }, 500)
             } else {
                 currentDialogue = null
-                dialogueLineIndex++
+                if (optionIndex == null) dialogueLineIndex++
                 if (dialogueLineIndex!=Object.keys(dialogueLines).length) {
                     setTimeout(() => {
                         typeWriter() 
@@ -113,12 +131,34 @@ function typeWriter() {
                 }
             }
         } else {
-            typeWriter() 
+            typeWriter(optionIndex) 
         }
     }, speed)
 }
- 
 
+const chooseOption = () => {
+    const optionLabels = document.querySelectorAll("[name='option']")
+    choosingOption = false
+    arrow.remove()
+    optionLabels.forEach(label => {
+        label.removeAttribute("name")
+    })
+    optionLabels[optionIndex].textContent = `${optionLabels[optionIndex].textContent}<`
+    currentDialogue = null
+    dialogueLineIndex++
+    typeWriter(optionIndex)
+}
+
+const updateOption = (amount) => {
+    const optionLabels = document.querySelectorAll("[name='option']")
+    optionIndex+=amount
+    if (optionIndex<0) {
+        optionIndex = optionLabels.length
+    } else if (optionIndex>=optionLabels.length) {
+        optionIndex = 0 
+    }
+    optionLabels[optionIndex].appendChild(arrow)
+}
 
 const startTerminal = () => {
     const one = document.createElement("span")
@@ -235,12 +275,27 @@ const processCommand = (command) => {
     newCommand()
 }
 
-if (window.prompt("open terminal? (yes,no)") == 'yes') {
-    startTerminal()
-} else {
-    setTimeout(() => {
-        typeWriter()
-    }, 1000)
+document.onkeydown = function (e) {
+    if (choosingOption) {
+        if (e.key == "ArrowUp" || e.key=="w") {
+            updateOption(-1)
+        } else if (e.key == "ArrowDown" || e.key == "s") {
+            updateOption(1)
+        } else if (e.key == "Enter") {
+            chooseOption()
+        }
+    } 
 }
 
+// if (window.prompt("open terminal? (yes,no)") == 'yes') {
+//     startTerminal()
+// } else {
+//     setTimeout(() => {
+//         typeWriter()
+//     }, 1000)
+// }
+
+setTimeout(() => {
+    typeWriter()
+}, 2000)
 

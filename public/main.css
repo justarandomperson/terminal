@@ -13,6 +13,9 @@ body {
     color: white;
     font-family: retro;
     font-size: 1.5em;
+    overflow-x: hidden;
+    overflow-y: auto;
+    padding: 5px;
 }
 
 input {
@@ -22,15 +25,33 @@ input {
     outline: none;
     font-size: 1em;
     border: 0;
-    flex-grow: initial;
+    width: 50%;
 }
 
 .lines{
     display: flex;
     flex-direction: column;
-    padding: 5px;
 }
 
-span{
+.dialogue span {
+    display: block;
+}
+
+.dialogue button {
+    font-family: retro;
+    font-size: 1em;
+    background: transparent;
+    color: white;
+    margin-left: 10px;
+    height: 100%;
+    width: 50px;
+    border: 0;
+}
+
+span {
     margin-bottom: 15px;
 }
+.commandPrompt{
+    display:inline;
+}
+

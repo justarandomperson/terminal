@@ -481,8 +481,8 @@ const typeWriter = (optionIndex) => {
                 if (currentLine.route) playerInformation.route = currentLine.route
                 if (optionIndex == null) dialogueLineIndex++
                 if (currentLine.nextLine != null) dialogueLineIndex = currentLine.nextLine
-                if (currentLine.sound) new Audio("./public/assets/sfx/"+currentLine.sound+".mp3").play()
-                if (currentLine.image) document.body.style.backgroundImage = `url("./public/assets/images/${currentLine.image}.png")`
+                if (currentLine.sound) new Audio(`${process.env.URL}/assets/sfx/"${currentLine.sound}.mp3`).play()
+                if (currentLine.image) document.body.style.backgroundImage = `url(${process.env.URL}/assets/images/${currentLine.image}.png")`
                 if (currentLine.duration) {
                     setTimeout(() => {
                         document.body.style.backgroundImage = ``
@@ -561,7 +561,7 @@ const Ending = (endingName) => {
     Ending: ${endingName} \r\n \r\n
     ${endingDescriptions[endingName]}`
     dialogue.appendChild(gameOver)
-    while (document.body.scrollHeight != Math.max(document.body.offsetHeight, document.body.clientHeight)) dialogue.firstElementChild.remove()
+    while (document.body.scrollHeight != Math.max(document.body.offsetHeight, document.body.clientHeight) || dialogue.length==12) dialogue.firstElementChild.remove()
 }
 
 const startTerminal = () => {

@@ -1,9 +1,8 @@
 import fileInformation from "./info/fileInformation.mjs"
+import colors from "./info/colors.mjs"
 
 const lines = document.querySelector(".lines")
 const commandInput = document.createElement("input")
-const arrow = document.createElement("span")
-arrow.textContent = "<"
 
 const specialname = "Wazir Mashala Machlul Javarmi Muchtal Shitsha"
 
@@ -12,16 +11,7 @@ let parentPath = "C:\\Users"
 let Path = "C:\\Users\\???"
 let currentDir = "???"
 
-const startTerminal = () => {
-    const one = document.createElement("span")
-    const two = document.createElement("span")
-    one.textContent = "Microsoft Windows [Version 6.1.7601]"
-    two.textContent = "Copyright (c) 2009 Microsoft Corporation. All rights reserved."
-    lines.appendChild(one)
-    lines.appendChild(two)
 
-    newCommand()
-}  
 
 const newCommand = () => {
     const lineBreak = document.createElement("br")
@@ -37,7 +27,11 @@ const newCommand = () => {
     lines.appendChild(newDiv)
 
     window.scrollBy (0, 10000);
-
+    commandInput.focus()
+    commandInput.addEventListener(onblur, () => {
+        console.log("hi")
+        commandInput.focus() 
+    })
     commandInput.onkeydown = (e) => {
         if (e.key == "Enter") {
             const newLine = document.createElement("span")
@@ -116,6 +110,16 @@ const processCommand = (command) => {
         case 'cls':
             lines.replaceChildren()
             break;
+        case 'color':
+            if (colors[arg]) {
+                document.body.style.color = colors[arg]
+                commandInput.style.color = colors[arg]
+            } else {
+                document.body.style.color = ""
+                commandInput.style.color = ""
+            }
+            break;
+
         default: 
             newLine.textContent = "'"+ prefix + "' is not recognized as an internal or external command, \r\n operable program or batch file."
             lines.append(newLine)         
@@ -125,6 +129,17 @@ const processCommand = (command) => {
 
     newCommand()
 }
+
+export default function() {
+    const one = document.createElement("span")
+    const two = document.createElement("span")
+    one.textContent = "Microsoft Windows [Version 6.1.7601]"
+    two.textContent = "Copyright (c) 2009 Microsoft Corporation. All rights reserved."
+    lines.appendChild(one)
+    lines.appendChild(two)
+
+    newCommand()
+}  
 
 
 // if (window.prompt("open terminal? (yes,no)") == 'yes') {

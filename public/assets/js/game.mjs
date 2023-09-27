@@ -42,6 +42,7 @@ const typeWriter = (optionIndex) => {
         dialogue.appendChild(currentDialogue)
     }
     if (document.body.scrollHeight != Math.max(document.body.offsetHeight, document.body.clientHeight) || dialogue.childNodes.length>20) dialogue.firstElementChild.remove()
+    window.scrollBy (0, 10000);
     setTimeout(function() {
         currentDialogue.textContent += text.charAt(textIndex)
         textIndex++

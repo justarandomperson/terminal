@@ -482,7 +482,7 @@ const typeWriter = (optionIndex) => {
                 if (optionIndex == null) dialogueLineIndex++
                 if (currentLine.nextLine != null) dialogueLineIndex = currentLine.nextLine
                 if (currentLine.sound) new Audio("./assets/sfx/"+currentLine.sound+".mp3").play()
-                if (currentLine.image) document.body.style.backgroundImage = `url("/assets/images/${currentLine.image}.png")`
+                if (currentLine.image) document.body.style.backgroundImage = `url("./assets/images/${currentLine.image}.png")`
                 if (currentLine.duration) {
                     setTimeout(() => {
                         document.body.style.backgroundImage = ``

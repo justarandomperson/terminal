@@ -118,7 +118,7 @@ const processCommand = (command) => {
                 commandInput.style.color = colors[arg]
             } else {
                 document.body.style.color = ""
-                commandInput.style.color = ""
+                commandInput.style.color = ""     
             }
             break;
         case 'type': {

@@ -99,6 +99,7 @@ const showOption = (optionName) => {
     const optionText = document.createElement("button")
     optionText.textContent = `-${option.text}`
     optionDiv.className = "option"
+    optionDiv.style.color = document.body.style.color;
     optionDiv.setAttribute("name", "option")
     optionDiv.appendChild(optionText)
     currentDialogue.appendChild(optionDiv)

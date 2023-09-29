@@ -27,7 +27,6 @@ const newCommand = () => {
     newDiv.appendChild(commandInput)
     lines.appendChild(newDiv)
 
-    window.scrollBy (0, 10000);
     commandInput.focus()
     commandInput.addEventListener(onblur, () => {
         console.log("hi")

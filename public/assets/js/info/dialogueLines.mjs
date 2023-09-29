@@ -158,7 +158,7 @@ export default function (playerInformation) {
         },
         //4
         {
-            line: "School starts on 8:30 AM..If I get up now I might get there on time..",
+            line: "School starts at 8:30 AM..If I get up now I might get there on time..",
             options: [
                 {
                     text: "...",   

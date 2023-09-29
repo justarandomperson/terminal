@@ -94,12 +94,16 @@ const typeWriter = (optionIndex) => {
 const showOption = (optionName) => {
     const option = currentLine.options[optionName]
     const optionDiv = document.createElement("div")
-    const optionText = document.createElement("span")
+    const optionText = document.createElement("button")
     optionText.textContent = `-${option.text}`
     optionDiv.className = "option"
     optionDiv.setAttribute("name", "option")
     optionDiv.appendChild(optionText)
     currentDialogue.appendChild(optionDiv)
+    optionText.addEventListener('click', () => {
+        optionIndex = optionName
+        chooseOption()
+    })
 }
 
 const chooseOption = () => {

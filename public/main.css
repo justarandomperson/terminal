@@ -34,8 +34,14 @@ input {
     flex-direction: column;
 }
 
-.lines .option {
+.lines button {
     margin-top: 10px;
+    font-family: retro;
+    background: transparent;
+    color: white;
+    outline: none;
+    font-size: 1em;
+    border: 0;
 }
 
 

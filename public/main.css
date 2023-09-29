@@ -65,7 +65,7 @@ span {
     button{
         width: 50%;
     }
-    .arrow{
+    .lines .option .arrow{
         display: none;
     }
 }

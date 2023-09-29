@@ -1,7 +1,7 @@
 import updateLines from "./info/dialogueLines.mjs"
 import endingDescriptions from './info/endingDescriptions.mjs'
 
-const dialogue = document.querySelector(".dialogue")
+const dialogue = document.querySelector(".lines")
 const dialogueInput = document.createElement("input")
 const arrow = document.createElement("span")
 arrow.textContent = "<"
@@ -32,7 +32,7 @@ const typeWriter = (optionIndex) => {
         currentLine = dialogueLines[playerInformation.route][dialogueLineIndex]
     }
     dialogueLines = updateLines(playerInformation)
-    if (dialogueLines[playerInformation.route][dialogueLineIndex].hasOwnProperty("condition") && dialogueLines[playerInformation.route][dialogueLineIndex].condition == false) {
+    if (dialogueLines[playerInformation.route][dialogueLineIndex].hasOwnProperty("condition") && !dialogueLines[playerInformation.route][dialogueLineIndex].condition) {
         dialogueLineIndex = currentLine.elseNextLine;
         return typeWriter()
     }
@@ -114,8 +114,8 @@ const chooseOption = () => {
         l++;
     })
     optionLabels[optionIndex].textContent = `${optionLabels[optionIndex].textContent}<`
-    if (currentLine.answer) {
-        playerInformation[currentLine.answer] = answer.value
+    if (currentLine.answer || answer.answer) {
+        playerInformation[currentLine.answer || answer.answer] = answer.value
     }
     currentDialogue = null
     if (answer.ending) return Ending(answer.ending)

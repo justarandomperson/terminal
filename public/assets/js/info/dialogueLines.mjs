@@ -42,7 +42,7 @@ export default function (playerInformation) {
                 },
                 {
                     text: "Sleep",
-                    answer: "late",
+                    answer: 'late',
                     value: true,
                     response: "I wanna sleep a bit more..",
                     route: "sleep",
@@ -95,7 +95,7 @@ export default function (playerInformation) {
         },
         //10
         {
-            condition: playerInformation.late,
+            condition: !playerInformation.late,
             elseNextLine: 11,
             line: "Which way should I take to school..",
             options: [
@@ -244,7 +244,7 @@ export default function (playerInformation) {
             line: "..."
         },
         {
-            line: `???: "Please..let me get in..It's cold out here.."`
+            line: `???: "Please..let me in..It's cold out here.."`
         },
         {
             line: "...",

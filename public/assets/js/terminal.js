@@ -1,17 +1,18 @@
+import startGame from './textadventure.mjs'
+
 import fileInformation from "./info/fileInformation.mjs"
-import colors from "./info/colors.mjs"
+import {colors} from "./info/smallInfo.mjs"
+
 
 const lines = document.querySelector(".lines")
 const commandInput = document.createElement("input")
 
 const specialname = "Wazir Mashala Machlul Javarmi Muchtal Shitsha"
 
-
 let parentPath = "C:\\Users"
 let Path = "C:\\Users\\???"
 let currentDir = "???"
-
-
+let inTerminal = true
 
 const newCommand = () => {
     const lineBreak = document.createElement("br")
@@ -63,6 +64,15 @@ const processCommand = (command) => {
     
     const newLine = document.createElement("span")
     newLine.setAttribute('style', 'white-space: pre;');
+
+    let fileExistsInDir = false
+    let file = null
+    let fileType = ""
+    if (arg) {
+        fileExistsInDir  = (fileInformation[arg.split(".")[0]] && fileInformation[currentDir].contains.includes(arg.split(".")[0]))
+        file = fileInformation[arg.split(".")[0]]
+        fileType = arg.split(".")[1]
+    }
     switch(prefix) {
         case 'echo':
             newLine.textContent = arg
@@ -71,8 +81,6 @@ const processCommand = (command) => {
         case 'dir':
             if (currentDir in fileInformation) {
                 dirFile(newLine)
-            } else {
-                newLine.textContent = "5/01/2016  03:00    <DIR>          homework"
             }
             lines.append(newLine)
             break
@@ -85,8 +93,7 @@ const processCommand = (command) => {
                     newLine.textContent = "ERROR - UNAUTHORIZED"
                 }
             } else {
-                if (fileInformation[currentDir].contains.includes(arg.split(".")[0])) {
-                    const file = fileInformation[arg.split(".")[0]]
+                if (fileExistsInDir) {
                     if (file.type == "folder") {
                         if (arg != arg.split(".")[0]) {
                             newLine.textContent = "The system cannot find the path specified."
@@ -119,18 +126,48 @@ const processCommand = (command) => {
                 commandInput.style.color = ""
             }
             break;
+        case 'type': {
+            if (!fileExistsInDir || fileType!=file.type) {
+                newLine.textContent = `Cannot find file ${arg}.`; 
+                lines.append(newLine); 
+                break 
+            }
+            if (fileType != "txt") {newLine.textContent = `Cannot read file ${arg}.`;lines.append(newLine);  break;}
+            newLine.textContent = file.content;
+            lines.append(newLine); 
+            break;
+        }   
+        case 'ipconfig': {
+            newLine.textContent = ("Windows IP Configuration\r\n\r\n\r\nEthernet adapter Ethernet: \r\n     Connection-specific DNS Suffix  . : \r\n     IPv6 Address. . . . . . . . . . . : 2001:abce:26:2712:e6e4:b2b6:0bd1:a25d \r\n     IPv6 Address. . . . . . . . . . . : 2001:abce:26:2712:43b1:cea0:c288:a841\r\n     Temporary IPv6 Address. . . . . . : 2001:abce:26:2712:146f:29ed:66bd:fa04\r\n     Link-local IPv6 Address . . . . . : 2001:abce:26:2712:e6e4:b2b6:0bd1:a25d\r\n     IPv4 Address. . . . . . . . . . . : 139.57.43.87 \r\n     Subnet Mask . . . . . . . . . . . : 255.255.255.0\r\n     Default Gateway . . . . . . . . . : fe80::7eb7:33ff:feb5:dcfb%17\r\n                                        139.57.1.1")
+            lines.appendChild(newLine)
+            break;
+        }
 
+        case 'start':
+            if (!fileExistsInDir || fileType!=file.type) {
+                newLine.textContent = `Cannot find file ${arg}.`; 
+                lines.append(newLine); 
+                break 
+            }
+            if (fileType != "exe") {newLine.textContent = `Cannot run file ${arg}.`; 
+            lines.append(newLine); }
+            inTerminal = false;
+            switch (file.name) {
+                case "textadventure":
+                    startGame()
+                    break;
+            }
+            break;
         default: 
             newLine.textContent = "'"+ prefix + "' is not recognized as an internal or external command, \r\n operable program or batch file."
             lines.append(newLine)         
             break
     }
     
-
-    newCommand()
+    if (inTerminal) newCommand()
 }
 
-export default function() {
+const startTerminal = () => {
     const one = document.createElement("span")
     const two = document.createElement("span")
     one.textContent = "Microsoft Windows [Version 6.1.7601]"
@@ -142,13 +179,6 @@ export default function() {
 }  
 
 
-// if (window.prompt("open terminal? (yes,no)") == 'yes') {
-//     startTerminal()
-// } else {
-//     setTimeout(() => {
-//         typeWriter()
-//     }, 1000)
-// }
 
 
-// startTerminal()
+startTerminal()

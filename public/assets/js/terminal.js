@@ -144,6 +144,7 @@ const processCommand = (command) => {
         }
         case 'txtadven': {
             startGame()
+            inTerminal = false;
             break;
         }
 

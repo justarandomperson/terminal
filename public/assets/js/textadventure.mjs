@@ -42,10 +42,11 @@ const typeWriter = (optionIndex) => {
         currentDialogue = document.createElement("span")
         dialogue.appendChild(currentDialogue)
     }
-    if (document.body.scrollHeight != Math.max(document.body.offsetHeight, document.body.clientHeight) || dialogue.childNodes.length>20) dialogue.firstElementChild.remove()
     setTimeout(function() {
         currentDialogue.textContent += text.charAt(textIndex)
         textIndex++
+        if (document.body.scrollHeight != Math.max(document.body.offsetHeight, document.body.clientHeight) || dialogue.childNodes.length>20) dialogue.firstElementChild.remove()
+        window.scrollBy(0, 10000)
         if (textIndex>=text.length){
             textIndex = 0
             if (currentLine.options && optionIndex == null) {

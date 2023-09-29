@@ -56,6 +56,7 @@ const typeWriter = (optionIndex) => {
                     })
                     optionIndex = 0
                     choosingOption = true
+                    dialogue.focus()
                     updateOption(0)
                 }, 500)
             } else if (currentLine.input)  {
@@ -163,6 +164,7 @@ const Ending = (endingName) => {
     window.scrollBy(0, 10000)
 }
 
+
 document.onkeydown = function (e) {
     if (choosingOption) {
         if (e.key == "ArrowUp" || e.key=="w") {
@@ -197,6 +199,7 @@ document.onkeydown = function (e) {
 export default function () {
     setTimeout(() => {
         typeWriter()
+        
     }, 250)
 }
 

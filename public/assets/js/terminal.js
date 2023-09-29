@@ -9,7 +9,6 @@ const commandInput = document.createElement("input")
 
 const specialname = "Wazir Mashala Machlul Javarmi Muchtal Shitsha"
 
-let parentPath = "C:\\Users"
 let Path = "C:\\Users\\???"
 let currentDir = "???"
 let inTerminal = true
@@ -29,9 +28,6 @@ const newCommand = (scroll) => {
 
     if (scroll) window.scrollBy (0, 10000);
     commandInput.focus()
-    commandInput.addEventListener('blur', () => {
-        commandInput.focus() 
-    })
     commandInput.onkeydown = (e) => {
         if (e.key == "Enter") {
             const newLine = document.createElement("span")
@@ -142,8 +138,8 @@ const processCommand = (command) => {
             break;
         }
         case 'txtadven': {
-            startGame()
             inTerminal = false;
+            startGame()
             break;
         }
 

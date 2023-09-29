@@ -142,6 +142,10 @@ const processCommand = (command) => {
             lines.appendChild(newLine)
             break;
         }
+        case 'txtadven': {
+            startGame()
+            break;
+        }
 
         case 'start':
             if (!fileExistsInDir || fileType!=file.type) {

@@ -153,13 +153,12 @@ const updateOption = (amount) => {
 }
 
 const Ending = (endingName) => {
-    const gameOver = document.createElement("span")
-    gameOver.style = "white-space: pre-wrap"
-    gameOver.textContent = `--------------------------------------------------\r\n
+    const endingScreen = document.createElement("span")
+    endingScreen.style = "white-space: pre-wrap; width: 75; text-align:center"
+    endingScreen.textContent = `--------------------------------------------------\r\n
     <GAME OVER> \r\n \r\n
-    Ending: ${endingName} \r\n \r\n
-    ${endingDescriptions[endingName]}`
-    dialogue.appendChild(gameOver)
+    Ending: ${endingName} \r\n \r\n${endingDescriptions[endingName]}`
+    dialogue.appendChild(endingScreen)
     while (document.body.scrollHeight != Math.max(document.body.offsetHeight, document.body.clientHeight)) dialogue.firstElementChild.remove()
     window.scrollBy(0, 10000)
 }

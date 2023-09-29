@@ -15,8 +15,6 @@ body {
     height: 99vh;
     font-family: retro;
     font-size: 1.5em;
-    overflow-x: hidden;
-    overflow-y: auto;
     padding: 5px;
     overflow: hidden;
 }

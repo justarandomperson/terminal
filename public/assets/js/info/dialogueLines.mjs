@@ -8,19 +8,15 @@ export default function (playerInformation) {
             options: [
                 {
                     text: "Slow",
-                    value: 1
-                },
-                {
-                    text: "Medium",
                     value: 1.5
                 },
                 {
-                    text: "Fast",
+                    text: "Medium",
                     value: 2
                 },
                 {
-                    text: "Instant",
-                    value: 50
+                    text: "Fast",
+                    value: 40
                 },
                 
             ],

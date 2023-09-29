@@ -48,8 +48,8 @@ export default {
         content: `hello those are games you can run with the command "start".`
     },
 
-    textadventure: {
-        name: "textadventure",
+    txtadven: {
+        name: "txtadven",
         type: "exe",
         date: "28/09/2023",
         hour: "03:00",

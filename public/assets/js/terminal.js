@@ -153,7 +153,7 @@ const processCommand = (command) => {
             lines.append(newLine); }
             inTerminal = false;
             switch (file.name) {
-                case "textadventure":
+                case "txtadven":
                     startGame()
                     break;
             }

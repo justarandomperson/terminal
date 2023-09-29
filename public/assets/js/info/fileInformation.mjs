@@ -36,7 +36,7 @@ export default {
         date: "28/09/2023",
         hour: "03:00",
         parentPath: 'C:\\Users\\???',
-        contains: ["textadventure", "readme"]
+        contains: ["txtadven", "readme"]
     },
 
     readme: {

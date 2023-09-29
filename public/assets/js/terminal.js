@@ -14,7 +14,7 @@ let Path = "C:\\Users\\???"
 let currentDir = "???"
 let inTerminal = true
 
-const newCommand = () => {
+const newCommand = (scroll) => {
     const lineBreak = document.createElement("br")
     lines.appendChild(lineBreak)
     const commandLine = document.createElement("span")
@@ -27,6 +27,7 @@ const newCommand = () => {
     newDiv.appendChild(commandInput)
     lines.appendChild(newDiv)
 
+    if (scroll) window.scrollBy (0, 10000);
     commandInput.focus()
     commandInput.addEventListener(onblur, () => {
         console.log("hi")
@@ -163,7 +164,7 @@ const processCommand = (command) => {
             break
     }
     
-    if (inTerminal) newCommand()
+    if (inTerminal) newCommand(true)
 }
 
 const startTerminal = () => {
@@ -174,7 +175,7 @@ const startTerminal = () => {
     lines.appendChild(one)
     lines.appendChild(two)
 
-    newCommand()
+    newCommand(false)
 }  
 
 

@@ -29,8 +29,7 @@ const newCommand = (scroll) => {
 
     if (scroll) window.scrollBy (0, 10000);
     commandInput.focus()
-    commandInput.addEventListener(onblur, () => {
-        console.log("hi")
+    commandInput.addEventListener('blur', () => {
         commandInput.focus() 
     })
     commandInput.onkeydown = (e) => {

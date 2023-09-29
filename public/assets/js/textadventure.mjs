@@ -4,6 +4,7 @@ import endingDescriptions from './info/endingDescriptions.mjs'
 const dialogue = document.querySelector(".lines")
 const dialogueInput = document.createElement("input")
 const arrow = document.createElement("span")
+arrow.className = "arrow"
 arrow.textContent = "<"
 
 const playerInformation = {

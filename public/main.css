@@ -59,11 +59,14 @@ span {
 }
 
 @media only screen and (max-width:800px) {
-    body {
+    body{
         font-size: 1em;
         overflow-y: auto;
     }
-    button {
+    button{
         width: 50%;
+    }
+    .arrow{
+        display: none;
     }
 }

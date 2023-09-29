@@ -160,6 +160,7 @@ const Ending = (endingName) => {
     ${endingDescriptions[endingName]}`
     dialogue.appendChild(gameOver)
     while (document.body.scrollHeight != Math.max(document.body.offsetHeight, document.body.clientHeight)) dialogue.firstElementChild.remove()
+    window.scrollBy(0, 10000)
 }
 
 document.onkeydown = function (e) {

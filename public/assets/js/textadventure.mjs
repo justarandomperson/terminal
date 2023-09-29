@@ -100,10 +100,12 @@ const showOption = (optionName) => {
     optionDiv.setAttribute("name", "option")
     optionDiv.appendChild(optionText)
     currentDialogue.appendChild(optionDiv)
+    if (document.body.scrollHeight != Math.max(document.body.offsetHeight, document.body.clientHeight) || dialogue.childNodes.length>20) dialogue.firstElementChild.remove()
     optionText.addEventListener('click', () => {
         optionIndex = optionName
         chooseOption()
     })
+    
 }
 
 const chooseOption = () => {

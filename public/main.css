@@ -42,10 +42,14 @@ button{
 }
 
 
+.lines span .option{
+    margin-top: 5px;
+}
+
 .lines .option span {
-    margin-top: 10px;
     display: inline;
 }
+
 
 .lines .oldinput {
     display: inline;

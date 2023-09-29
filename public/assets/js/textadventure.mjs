@@ -45,7 +45,7 @@ const typeWriter = (optionIndex) => {
     setTimeout(function() {
         currentDialogue.textContent += text.charAt(textIndex)
         textIndex++
-        if (document.body.scrollHeight != Math.max(document.body.offsetHeight, document.body.clientHeight) || dialogue.childNodes.length>20) dialogue.firstElementChild.remove()
+        if (document.body.scrollHeight != Math.max(document.body.offsetHeight, document.body.clientHeight)) dialogue.firstElementChild.remove()
         window.scrollBy(0, 10000)
         if (textIndex>=text.length){
             textIndex = 0
@@ -101,7 +101,7 @@ const showOption = (optionName) => {
     optionDiv.setAttribute("name", "option")
     optionDiv.appendChild(optionText)
     currentDialogue.appendChild(optionDiv)
-    if (document.body.scrollHeight != Math.max(document.body.offsetHeight, document.body.clientHeight) || dialogue.childNodes.length>20) dialogue.firstElementChild.remove()
+    if (document.body.scrollHeight != Math.max(document.body.offsetHeight, document.body.clientHeight)) dialogue.firstElementChild.remove()
     optionText.addEventListener('click', () => {
         optionIndex = optionName
         chooseOption()
@@ -159,7 +159,7 @@ const Ending = (endingName) => {
     Ending: ${endingName} \r\n \r\n
     ${endingDescriptions[endingName]}`
     dialogue.appendChild(gameOver)
-    while (document.body.scrollHeight != Math.max(document.body.offsetHeight, document.body.clientHeight) || dialogue.length==12) dialogue.firstElementChild.remove()
+    while (document.body.scrollHeight != Math.max(document.body.offsetHeight, document.body.clientHeight)) dialogue.firstElementChild.remove()
 }
 
 document.onkeydown = function (e) {

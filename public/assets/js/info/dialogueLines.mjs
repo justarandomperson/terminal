@@ -519,7 +519,8 @@ export default function (playerInformation) {
             line: 'Great, another choice..',
             options: [
                 {
-                    text: 'Walk in'
+                    text: 'Walk in',
+                    nextLine: 23
                 },
                 {
                     text: 'Ignore'

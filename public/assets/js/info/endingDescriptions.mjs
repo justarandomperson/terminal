@@ -3,7 +3,7 @@ export default {
     "Slipped and died": "Unlucky.",
     "THE GREATEST DISRESPECT": "DO NOT DISRESPECT THE GREAT, THE AMAZING, THE SUPER AWESOME AND COOL TRAVELLER, YUDELF!",
     "Stranger danger": "What are you, an orphan? Your parents never told you to not open the door for strangers?",
-    "wee snaw": "Don't push your luck.",
+    "snaw wee": "Don't push your luck.",
     "Greedy": "Were those 10 shekels that important to you?",
     "THE BRITISH BLADE": "Bold of you to assume you're able to escape british people.",
     "LITTLE TRAVIS": "You don’t mess with little travis.",

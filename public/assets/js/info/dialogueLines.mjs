@@ -1377,7 +1377,7 @@ export default function (playerInformation) {
             line: "You start watching how to invest in the stock market idk."
         },
         {
-            line: "A lot of years have passed. You end up in an expected place.",
+            line: "A lot of years have passed. You end up in an unexpected place.",
             delay: 2000
         },
         {

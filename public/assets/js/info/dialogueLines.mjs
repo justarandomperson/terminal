@@ -588,7 +588,8 @@ export default function (playerInformation) {
         },
         {
             line: 'After walking a lot, I finally see the school!',
-            ending: 'Lonely walk to school'
+            ending: 'Lonely walk to school',
+            win: true
         },
     ],
     yuvalBusWalk:[
@@ -599,7 +600,7 @@ export default function (playerInformation) {
             line: "I have no idea where we are, and it seems he doesn't really care about our safety considering he just left us."
         },
         {
-            line: "The other kids have already began to walk in the direction the bus driver told us, and so Yuval and Istarted walking as well."
+            line: "The other kids have already began to walk in the direction the bus driver told us, and so Yuval and I started walking as well."
         },
         {
             line: "I look down and notice my shoe laces are not tied."
@@ -801,7 +802,8 @@ export default function (playerInformation) {
         },
         {
             line: 'After walking a lot, We finally see the school!',
-            ending: 'Aggressive walk to school'
+            ending: 'Aggressive walk to school',
+            win: true
         },
     ],
     yudelfBusWalk: [
@@ -840,7 +842,7 @@ export default function (playerInformation) {
         },
         //10
         {
-            line: 'Yudelf: "AND TO MAKE IT EVEN MORE FAIR FOR THEM, YUDELF HAS MADE SURE TO LOSE THEM!"',
+            line: 'Yudelf: "AND TO MAKE IT EVEN MORE FAIR TO THEM, YUDELF HAS MADE SURE TO LOSE THEM!"',
         },
         {
             line: "...Maybe it wasn't the wisest choice to befriend him.",
@@ -1055,7 +1057,8 @@ export default function (playerInformation) {
         },
         {
             line: 'After walking a lot, We finally see the school!',
-            ending: 'Coolest walk to school'
+            ending: 'Coolest walk to school',
+            win: true
         },
     ],
     sneakily: [

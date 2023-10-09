@@ -80,7 +80,7 @@ const processCommand = (command) => {
             lines.append(newLine)
             break
         case 'cd':
-            if (arg == "../") {
+            if (arg == "../" || arg == '..') {
                 if (fileInformation[currentDir].parentPath) {
                     Path = fileInformation[currentDir].parentPath
                     currentDir = Path.split("\\")[Path.split("\\").length-1]

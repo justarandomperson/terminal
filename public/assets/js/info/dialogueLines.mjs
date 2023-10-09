@@ -1115,7 +1115,7 @@ export default function (playerInformation) {
         },
         //9
         {
-            line: `Yudelf:"THE OTHER KIDS ARE SCARED OF ME, BUT FEAR NOT! YUDELF IS NO DANGER! YOU NOW HAVE THE HONOR OF BECOMING..YUDALF’S BEST FRIEND!!"`,
+            line: `Yudelf:"THE OTHER KIDS ARE SCARED OF ME, BUT FEAR NOT! YUDELF IS NO DANGER! YOU NOW HAVE THE HONOR OF BECOMING..YUDELF’S BEST FRIEND!!"`,
         },
         //10
         {
@@ -1126,14 +1126,14 @@ export default function (playerInformation) {
         },
         //11
         {
-            line: `Yudelf:"FEAR NOT, BECAUSE YUDELF’S ABILLITY AT SHUTTING UP IS ABOVE THE AVERAGE OF YUDALF'S PEERS!"`,
+            line: `Yudelf:"FEAR NOT, BECAUSE YUDELF’S ABILLITY AT SHUTTING UP IS ABOVE THE AVERAGE OF YUDELF'S PEERS!"`,
             delay: 2000,
             nextLine: 4,
             route: 'bus'
         },
         //12
         {
-            line: `Yudelf:"SHOW RESPECT TO THE GREAT YUDALF!" He says, as he grabs a screwdiver from his pocket and stabs you in the neck.`,
+            line: `Yudelf:"SHOW RESPECT TO THE GREAT YUDELF!" He says, as he grabs a screwdiver from his pocket and stabs you in the neck.`,
             ending: "THE GREATEST DISRESPECT",
             delay: 1500
         },

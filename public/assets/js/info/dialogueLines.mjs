@@ -1374,7 +1374,7 @@ export default function (playerInformation) {
         },
         //31
         {
-            line: "You start watching how to invest in the stock market idk."
+            line: "You start watching a guide on how to invest in the stock market idk."
         },
         {
             line: "A lot of years have passed. You end up in an unexpected place.",

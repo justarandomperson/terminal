@@ -1199,7 +1199,10 @@ export default function (playerInformation) {
         },
         //10
         {
-            line: "Reluctantly, I stayed silent throughout the rest of the ride."
+            line: "Reluctantly, I stayed silent throughout the rest of the ride.",
+            delay: 1000,
+            route: 'bus',
+            nextLine: 4
         },
     ],
     neighborhood: [

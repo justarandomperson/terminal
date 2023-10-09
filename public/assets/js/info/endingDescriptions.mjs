@@ -2,5 +2,20 @@ export default {
     "Dehydration": "Too lazy to drink, too lazy to live.",
     "Slipped and died": "Unlucky.",
     "THE GREATEST DISRESPECT": "DO NOT DISRESPECT THE GREAT, THE AMAZING, THE SUPER AWESOME AND COOL TRAVELLER, YUDELF!",
-    "Stranger danger": "What are you, an orphan? Your parents never told you to not open the door for strangers?"
+    "Stranger danger": "What are you, an orphan? Your parents never told you to not open the door for strangers?",
+    "wee snaw": "Don't push your luck.",
+    "Greedy": "Were those 10 shekels that important to you?",
+    "THE BRITISH BLADE": "Bold of you to assume you're able to escape british people.",
+    "LITTLE TRAVIS": "You don’t mess with little travis.",
+    "Bear trapped": "Look at where you're running",
+    "Lethal Tea": "What are you, an orphan? Your parents never told you to not trust strangers?",
+    "Rock": "Honestly, I have run out of ideas. That's a stupid way of dying.",
+    "Boom": "Wasn't that great of an idea, to be honest.",
+    "Homeless": "What was the game about again? Going to school?",
+    "Exhaustion": "I don't know how you managed to do that, but you walked until you died out of exhaustion.",
+    "Lonely walk to school": "Honestly, not a whole lot happened. But you got there!",
+    "Aggressive walk to school": "Honestly, not a whole lot happened, even with a 'friend'. But you got there!",
+    "Coolest walk to school": "Honestly, not a whole lot happened, even with 'him'. But you got there!", 
+    "Sketchy walk to school": "By the way, Andrew Tate was also the clown and the british man.",
+    "A walk in the park": 'You got to the school through the forest, good job!'
 }

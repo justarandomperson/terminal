@@ -2,6 +2,10 @@
     font-family: retro;
     src:url(retro.ttf)
 }
+@font-face{
+    font-family: funny;
+    src:url(funny.ttf)
+}
 
 * {
     margin: 0;

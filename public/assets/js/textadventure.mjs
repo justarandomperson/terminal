@@ -12,18 +12,31 @@ const playerInformation = {
     name: '',
     route: 'normal',
     late: false,
-    textSpeedMultiplier: 1
+    textSpeedMultiplier: 1,
+    deaths: 0,
+    friend: ''
 }
 
 let dialogueLines = updateLines(playerInformation)
 
-let textIndex = 0
-let optionIndex = 0
-let dialogueLineIndex = 0
-let currentDialogue
-let choosingOption = false
-let inputting = false
-let currentLine
+let textIndex,optionIndex,dialogueLineIndex,latestChoiceLineIndex
+let currentDialogue,currentLine,choosingOption,inputting,lastestChoiceRoute,voiceAudio
+
+const Reset = (back) => {
+    textIndex = 0
+    optionIndex = 0
+    dialogueLineIndex = 0
+    currentDialogue,currentLine = ""
+    choosingOption = 0
+    inputting = false
+    playerInformation.route = "normal"
+    playerInformation.friend = ''
+    if (!back) {
+        playerInformation.rng = Math.floor(Math.random()*100)
+        latestChoiceLineIndex = 0
+        lastestChoiceRoute = "normal"
+    }
+}
 
 
 const typeWriter = (optionIndex) => {
@@ -36,14 +49,17 @@ const typeWriter = (optionIndex) => {
     dialogueLines = updateLines(playerInformation)
     if (dialogueLines[playerInformation.route][dialogueLineIndex].hasOwnProperty("condition") && !dialogueLines[playerInformation.route][dialogueLineIndex].condition) {
         dialogueLineIndex = currentLine.elseNextLine;
+        if (currentLine.elseRoute) playerInformation.route = currentLine.elseRoute
         return typeWriter()
     }
     const speed = (currentLine.speed || 50) / playerInformation.textSpeedMultiplier
     if (!currentDialogue) {
         currentDialogue = document.createElement("span")
+        if (currentLine.style) currentDialogue.style = currentLine.style
         dialogue.appendChild(currentDialogue)
     }
     setTimeout(function() {
+        if (currentLine.voice) {voiceAudio = new Audio(`./public/assets/sfx/${currentLine.voice}.mp3`); voiceAudio.volume = 0.1; voiceAudio.play()} 
         currentDialogue.textContent += text.charAt(textIndex)
         textIndex++
         if (document.body.scrollHeight != Math.max(document.body.offsetHeight, document.body.clientHeight)) dialogue.firstElementChild.remove()
@@ -63,6 +79,7 @@ const typeWriter = (optionIndex) => {
             } else if (currentLine.input)  {
                 currentDialogue.appendChild(dialogueInput)
                 inputting = true
+                if (currentLine.inputValue) dialogueInput.value = currentLine.inputValue
                 dialogueInput.focus()
                 dialogueInput.onblur = (() => {
                     if (inputting) dialogueInput.focus()
@@ -70,8 +87,8 @@ const typeWriter = (optionIndex) => {
             } else {
                 currentDialogue = null
                 if (currentLine.ending) return setTimeout(() => {
-                    Ending(currentLine.ending)
-                }, currentLine.delay)
+                    Ending(currentLine.ending, currentLine.won)
+                }, currentLine.delay || 2000)
                 if (currentLine.route) playerInformation.route = currentLine.route
                 if (optionIndex == null) dialogueLineIndex++
                 if (currentLine.nextLine != null) dialogueLineIndex = currentLine.nextLine
@@ -114,6 +131,10 @@ const showOption = (optionName) => {
 }
 
 const chooseOption = () => {
+    if (playerInformation.route != "gameover") {
+        latestChoiceLineIndex = dialogueLineIndex
+        lastestChoiceRoute = playerInformation.route
+    }
     const optionLabels = document.querySelectorAll("[name='option']")
     const answer = currentLine.options[optionIndex]
     choosingOption = false
@@ -124,11 +145,12 @@ const chooseOption = () => {
         if (l!=optionIndex) label.remove()
         l++;
     })
+    currentDialogue = null
     optionLabels[optionIndex].textContent = `${optionLabels[optionIndex].textContent}<`
+    if (playerInformation.route == "gameover") return gameOverChoice()
     if (currentLine.answer || answer.answer) {
         playerInformation[currentLine.answer || answer.answer] = answer.value
     }
-    currentDialogue = null
     if (answer.ending) return Ending(answer.ending)
     if (answer.nextLine != null) {
         dialogueLineIndex = answer.nextLine
@@ -155,15 +177,33 @@ const updateOption = (amount) => {
     optionLabels[optionIndex].appendChild(arrow)
 }
 
-const Ending = (endingName) => {
+const Ending = (endingName, won) => {
     const endingScreen = document.createElement("span")
+    endingScreen.setAttribute("name", "gameoverScreen")
     endingScreen.style = "white-space: pre-wrap; width: 75; text-align:center"
     endingScreen.textContent = `--------------------------------------------------\r\n
-    <GAME OVER> \r\n \r\n
+    ${won ? ("<GAME WIN>"): ("<GAME OVER>")} \r\n \r\n
     Ending: ${endingName} \r\n \r\n${endingDescriptions[endingName]}`
     dialogue.appendChild(endingScreen)
+    playerInformation.route = "gameover"
+    dialogueLineIndex = 0
+    typeWriter()
     while (document.body.scrollHeight != Math.max(document.body.offsetHeight, document.body.clientHeight)) dialogue.firstElementChild.remove()
     window.scrollBy(0, 10000)
+    if (!won) {playerInformation.deaths++} else playerInformation.deaths = 0
+}
+
+const gameOverChoice = () => {
+    if (optionIndex == 0) {
+        Reset()
+        dialogue.replaceChildren()
+    } else {
+        Reset(true)
+        document.querySelector('[name="gameoverScreen"]').remove()
+        dialogueLineIndex = latestChoiceLineIndex
+        playerInformation.route = lastestChoiceRoute
+    }
+    typeWriter()
 }
 
 
@@ -175,7 +215,7 @@ document.onkeydown = function (e) {
             updateOption(1)
         } 
     } 
-    if (e.key == "Enter") {
+    if (e.key == "Enter" || e.key == "z") {
         if (choosingOption) {
             chooseOption()
         } else if (inputting) {
@@ -185,12 +225,21 @@ document.onkeydown = function (e) {
             oldInput.className = "oldinput"
             oldInput.textContent = dialogueInput.value
             const answerType = currentLine.answer
+            dialogueInput.remove()
+            currentDialogue.appendChild(oldInput)
+            if (dialogueInput.value == "") {
+                if (currentLine.save) localStorage.removeItem(currentLine.answer)
+                currentDialogue = null
+                dialogueLineIndex=currentLine.emptyInputLine
+                playerInformation.route = "checks"
+                return typeWriter()
+            }
+            if (currentLine.save) localStorage.setItem(currentLine.answer, dialogueInput.value)
             if (answerType == "name") dialogueInput.value = dialogueInput.value[0].toUpperCase() + dialogueInput.value.slice(1)
             playerInformation[answerType] = dialogueInput.value
-            dialogueInput.remove()
             dialogueInput.value = ""
-            currentDialogue.appendChild(oldInput)
             dialogueLineIndex++
+            if (currentLine.nextLine) dialogueLineIndex = currentLine.nextLine
             currentDialogue = null
             dialogueLines = updateLines(playerInformation)
             typeWriter()
@@ -200,8 +249,8 @@ document.onkeydown = function (e) {
 
 export default function () {
     setTimeout(() => {
+        Reset() 
         typeWriter()
-        
     }, 250)
 }
 

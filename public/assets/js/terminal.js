@@ -157,6 +157,7 @@ const processCommand = (command) => {
                     startGame()
                     break;
             }
+            
             break;
         default: 
             newLine.textContent = "'"+ prefix + "' is not recognized as an internal or external command, \r\n operable program or batch file."

@@ -31,13 +31,13 @@ const Reset = (back) => {
     inputting = false
     playerInformation.route = "normal"
     playerInformation.friend = ''
+    playerInformation.late = false
     if (!back) {
         playerInformation.rng = Math.floor(Math.random()*100)
         latestChoiceLineIndex = 0
         lastestChoiceRoute = "normal"
     }
 }
-
 
 const typeWriter = (optionIndex) => {
     let text = dialogueLines[playerInformation.route][dialogueLineIndex].line
